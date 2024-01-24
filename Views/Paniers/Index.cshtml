@@ -1,0 +1,99 @@
+﻿@model List<lunettes.Models.Products> 
+@{
+    ViewData["Title"] = "Index";
+    decimal total = 0;
+}
+<h1>Mon panier </h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Nom
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Prix
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            total = total + item.Price;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="@item.Image" class="img-fluid" alt="">
+                </td>
+                <td>
+                    <p style="font-family:'Arial Rounded MT';color: darkorange"> @Html.DisplayFor(modelItem => item.Price) DH</p>
+                </td>
+               
+                <td>
+                    <button onClick="supprimerPanier(this)" class="btn btn-outline-danger"><i class="bi bi-cart3"></i> annuler du panier<input type="hidden" value="@item.Id" /></button>
+
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td>Total</td>
+            <td>
+                <p style="font-family:'Arial Rounded MT';color: darkorange; font-size: medium"> @Html.Raw(total) DH</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+    @if (Model.Count == 0)
+    {
+        <h2>Panier Vide</h2>
+    }
+    else
+    {
+        <a href="@Url.Action("Create","Orders")" class="btn btn-success">Valider commande </a>
+    }
+
+    <script>
+        function supprimerPanier(e) {
+            // Obtient la valeur du premier élément input dans l'élément fourni
+            var id = e.getElementsByTagName("input")[0].value;
+            // Initialise un tableau vide pour le panier  *
+            var panier = Array();
+            //  S'il existe des cookies, divise le cookie 'panier' et le convertit en tableau
+
+            if (document.cookie.length > "panier=".length)
+                panier = document.cookie.split('=')[1].split('-');
+            // Ajoute l'ID de l'article au tableau du panier
+
+            panier.splice(panier.indexOf(id), 1);
+
+            console.log(panier);
+            document.getElementById("cart-count").innerHTML = panier.length;
+            // Convertit le tableau du panier en une chaîne séparée par des virgules
+            panier = panier.join('-');
+
+            //Définitle cookie 'panier' avec la valeur mise à jour, ainsi qu'une date d'expiration et un chemin
+            e.parentElement.parentElement.remove();
+            document.cookie = `panier=${panier}; expires=Wed, 18 Dec 2030 12:00:00 UTC; path=/`;
+
+        }
+
+        function valider() {
+            var inputs = Array.prototype.slice.call(document.getElementsByTagName("input"));
+            var produits = inputs.splice(0, inputs.length - 2)
+            var name = inputs[inputs.length - 2].value;
+            var addr = inputs[inputs.length - 1].value;
+            console.log(name);
+            fetch("https://localhost:7204/Commandes/Create")
+        }
+    </script>
+

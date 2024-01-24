@@ -1,0 +1,81 @@
+﻿@model IEnumerable<lunettes.Models.OrderDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Order.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Image)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+}*@
+   
+
+<div class="fashion_section">
+    <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <h1 class="fashion_taital">Details</h1>
+                    <div class="fashion_section_2">
+
+                        <div class="row">
+ @foreach (var item in Model)
+{
+    <div class="col-lg-4 col-sm-4">
+        <div class="box_main">
+
+            <p>@Html.DisplayFor(modelItem => item.Order.Name)</p>
+            <h4 class="shirt_text"> @Html.DisplayFor(modelItem => item.Product.Name)</h4>
+            <p class="price_text">Prix <span style="color: #262626;">@Html.DisplayFor(modelItem => item.Product.Price) </span> MAD </p>
+            <div class="electronic_img"><img src=" @Html.DisplayFor(modelItem => item.Product.Image)"></div>
+           
+        </div>
+    </div>
+}
+                        </div>
+                    </div>
+                </div>
+            </div>

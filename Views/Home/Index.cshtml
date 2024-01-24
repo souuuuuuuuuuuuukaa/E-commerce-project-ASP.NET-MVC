@@ -1,0 +1,90 @@
+﻿@model IEnumerable<lunettes.Models.Products>
+@{
+    ViewData["Title"] = "Home Page";
+    try
+    {
+        ViewData["panier"] = Context.Request.Cookies["panier"].Split('-').ToList();
+    }
+    catch (Exception e)
+    {
+        ViewData["panier"] = new List<string>();
+    }
+}
+<div class="fashion_section">
+    <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <h1 class="fashion_taital">Produits</h1>
+                    <div class="fashion_section_2">
+
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="box_main">
+                                        <h4 class="shirt_text">  @Html.DisplayFor(modelItem => item.Name)</h4>
+                                        <p class="price_text">Prix <span style="color: #262626;">  @Html.DisplayFor(modelItem => item.Price) </span> MAD </p>
+                                        <div class="electronic_img"><img src="  @Html.DisplayFor(modelItem => item.Image)"></div>
+                                        <div class="btn_main">
+                                            @if (((List<string>)ViewData["panier"]).Contains(item.Id.ToString()))
+                                            {
+                                                <div class="buy_bt"><button class="btn btn-danger" onClick="ajouterPanier(this)">supprimer du panier <input type="hidden" value="@item.Id" /></button></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="buy_bt"><button class="btn btn-success" onClick="ajouterPanier(this)">Ajouter au panier <input type="hidden" value="@item.Id" /></button></div>
+                                            }
+
+                                            <div class="seemore_bt">
+                                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*ajouter produit au panier*@
+<script>
+    function ajouterPanier(e) {
+        // Obtient la valeur du premier élément input dans l'élément fourni
+        var id = e.getElementsByTagName("input")[0].value;
+        // Initialise un tableau vide pour le panier  *
+        var panier = Array();
+        //  S'il existe des cookies, divise le cookie 'panier' et le convertit en tableau
+
+        if (document.cookie.length > "panier=".length)
+            panier = document.cookie.split('=')[1].split('-');
+        // Ajoute l'ID de l'article au tableau du panier
+
+
+        if (e.className.includes("success")) {
+            panier.push(id);
+            e.className = "btn btn-danger";
+            e.innerHTML = e.innerHTML.replace("Ajouter au panier", "supprimer du panier");
+        }
+        else {
+
+            panier.splice(panier.indexOf(id), 1);
+            e.className = "btn btn-success";
+            e.innerHTML = e.innerHTML.replace("supprimer du panier", "Ajouter au panier");
+        }
+
+        console.log(panier);
+        document.getElementById("cart-count").innerHTML = panier.length;
+        // Convertit le tableau du panier en une chaîne séparée par des virgules
+        panier = panier.join('-');
+
+        //Définitle cookie 'panier' avec la valeur mise à jour, ainsi qu'une date d'expiration et un chemin
+        document.cookie = `panier=${panier}; expires=Wed, 18 Dec 2030 12:00:00 UTC; path=/`;
+
+    }
+</script>
+

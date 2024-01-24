@@ -1,0 +1,106 @@
+﻿@model IEnumerable<lunettes.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@*
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductTypes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialTags)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTypes.ProductType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialTags.SpecialTag)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@
+
+<div class="fashion_section">
+<div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <h1 class="fashion_taital">Panier</h1>
+                <div class="fashion_section_2">
+
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                          
+                            <h4 class="shirt_text">  @Html.DisplayFor(modelItem => item.Name)</h4>
+                            <p class="price_text">Prix <span style="color: #262626;">  @Html.DisplayFor(modelItem => item.Price) </span> MAD </p>
+                            <div class="electronic_img"><img src="  @Html.DisplayFor(modelItem => item.Image)"></div>
+                            <div class="btn_main">
+                                <div class="buy_bt"><a href="#">Acheter maintenant></div>
+                                <div class="seemore_bt">
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>

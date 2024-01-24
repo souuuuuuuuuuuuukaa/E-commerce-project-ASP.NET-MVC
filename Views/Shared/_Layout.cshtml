@@ -1,0 +1,216 @@
+﻿
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Mes lunettes</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="../../images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  -->
+    <!-- owl stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesoeet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body>
+    <!-- banner bg main start -->
+    <div class="banner_bg_main">
+        <!-- header top section start -->
+        <div class="container">
+            <div class="header_section_top">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="custom_menu">
+                            <ul>
+                                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                <li><a href="@Url.Action("Index","Orders")">Mes commandes</a></li>                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- header top section start -->
+
+        <!-- header section start -->
+        <div class="header_section">
+            <div class="container">
+                <div class="containt_main">
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>                   
+                        <a href="@Url.Action("Index","Products")">Lunettes </a>
+                        <a href="@Url.Action("Index","ProductTypes")">Lunettes soleil</a>
+                        <a href="@Url.Action("Index","ProductTypes")">Lunettes enfants</a>
+                        <a href="@Url.Action("Index","ProductTypes")">Lentilles </a>
+                    </div>
+                  <span class="toggle_icon" onclick="openNav()"><img src="../../images/toggle-icon.png"></span>
+                   
+                    <div class="main">
+                        <!-- Another variation with a button -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search this blog">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header_box">
+                        <div class="lang_box ">
+                            <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                                <img src="../../images/flag-france.png" class="mr-2" alt="flag"> Français
+                            </a>
+                            
+                        </div>
+                        <div class="login_menu">
+                            <ul>
+                                <li>
+                                    <a href=" @Url.Action("Index", "Paniers")">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <span class="padding_10" id="cart-count">(0)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=" @Url.Action("Index", "OrderDetails")">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span class="padding_10">Cart</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header section end -->
+
+
+
+        <div class="banner_section layout_padding">
+            <div class="container">
+                <div id="my_slider" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner section end -->
+    </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+        <div class="container">
+            <div class="footer_logo"><a href="index.html"><img src="../../images/footer-logo-img.png"></a></div>
+            <div class="input_bt">
+                <input type="text" class="mail_bt" placeholder="Votre Email" name="Votre Email">
+                <span class="subscribe_bt" id="basic-addon2"><a href="#">S'abonner</a></span>
+            </div>
+            <div class="footer_menu">
+                @* <ul>
+                    <li classe="nav-item"><a href="#">Best Sellers</a></li>
+                     <li classe="nav-item"><a href="#">Best Sellers</a></li>
+                </ul>*@
+
+
+            </div>
+            <div class="location_main">Numéro de ligne d'assistance : <a href="#">+212 5 00 00 00 00</a></div>
+            <div class="location_main">E-mail : <a href="#">  look_atme@gmail.com</a></div>
+        </div>
+    </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - LOOK at me</p>
+        </footer>
+    </div>
+    <!-- copyright section end -->
+    <script>
+
+        var panier = Array();
+        //  S'il existe des cookies, divise le cookie 'panier' et le convertit en tableau
+
+        if (document.cookie.length > "panier=".length)
+            panier = document.cookie.split('=')[1].split('-');
+
+        document.getElementById("cart-count").innerHTML = panier.length;
+
+
+    </script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>
